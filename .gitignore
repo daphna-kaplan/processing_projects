@@ -1,2 +1,6 @@
-ssh
-ssh.pub
+id_rsa.pub
+id_rsa
+id_dsa.pub
+id_dsa
+*.pem
+*.key
