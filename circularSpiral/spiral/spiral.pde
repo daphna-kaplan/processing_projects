@@ -39,7 +39,7 @@ void setup() {
      extrusion_multiplier = 1;
    } else if (layer == 3) {
      // Increase the speed
-     setSpeed(1200);
+     setSpeed(800);
      enableFan();
    }
 
