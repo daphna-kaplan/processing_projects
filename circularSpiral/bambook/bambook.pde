@@ -10,13 +10,12 @@ float layer_height = 0.2;
 float filament_diameter = 1.75;
 float extruded_path_section = path_width * layer_height;
 float filament_section = PI * sq(1.75/2.0f);
-float phase = 0;
 float outerRadius = 0.0f;
 float extrusion = 0;
 PVector previous_point = new PVector();
 float extrusion_multiplier = 1;
-float angle_increment = TWO_PI /40.0f;
-float length_side_cube =18;
+float angle_increment = TWO_PI /40.0f; // the number of edges on the circle polygon
+float circleRadius = 18;
 float newCenter_x = x_center_table;
 float newCenter_y = y_center_table;
 float current_z = 0;
@@ -41,7 +40,7 @@ void setup() {
     }
     drawCirlce();
     factor -= 0.02;
-    length_side_cube -= 0.3 * factor;
+    circleRadius -= 0.3 * factor;
   }
 
   drawCircleOnLayers(51, 550) ;
@@ -75,7 +74,7 @@ void spiralizeCircle(float numberOfPoints, float largeRadiusIncreaseFactor, floa
     newCenter_y = outer_y;
     drawCirlce();
     outerRadius += largeRadiusIncreaseFactor;
-    length_side_cube += smallRadiusIncreaseFactor;
+    circleRadius += smallRadiusIncreaseFactor;
     x_center_table += centerMovement;
  }
 
@@ -95,8 +94,8 @@ void drawCircleOnLayers(int startLayer, int endLayer) {
 
 void drawCirlce(){
   for (float angle = 0; angle<=TWO_PI; angle+=angle_increment) {
-    float x_1 = cos(angle) * length_side_cube;
-    float y_1 = sin(angle) * length_side_cube;
+    float x_1 = cos(angle) * circleRadius;
+    float y_1 = sin(angle) * circleRadius;
     float x = newCenter_x + x_1;
     float y = newCenter_y + y_1;
 
